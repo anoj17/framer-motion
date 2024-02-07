@@ -30,6 +30,7 @@ const NavBar = () => {
     const clickPage = () => {
         setIsPageDrop(true)
         setIsHomeDrop(false)
+        
     }
     return <>
 
