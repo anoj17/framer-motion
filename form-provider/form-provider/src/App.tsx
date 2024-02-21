@@ -4,18 +4,31 @@ import { DevTool } from "@hookform/devtools"
 interface iappData {
   username: string,
   password: string,
-  email: string
+  email: string,
+  language: {
+    language1: string,
+    language2: string
+  }
 }
 
 let renderCount = 0;
 
 function App() {
 
-  const form = useForm<any>()
-  
+  const form = useForm<any>({
+    defaultValues: {
+      username: 'Batman',
+      password: '',
+      language: {
+        language1: '',
+        language2: "react"
+      }
+    }
+  })
+
   const { register, control, handleSubmit, formState } = form
 
-  const { errors } = formState
+  const { errors, submitCount } = formState
 
 
   const submitData = (data: iappData) => {
@@ -53,6 +66,10 @@ function App() {
                 value: /^([a-zA-Z0-9_.-])+@(([a-zA-Z0-9-])+.)+([a-zA-Z0-9]{2,4})+$/,
                 message: 'invalide email'
               },
+              required: {
+                value: true,
+                message: "email field is required"
+              },
               validate: {
                 notAdmin: (fieldValue) => {
                   return (fieldValue !== "admin@gmail.com" || 'enter another email')
@@ -79,8 +96,23 @@ function App() {
             />
             <p className="text-red-600 text-[.8rem] font-semibold">{errors.password?.message}</p>
           </div>
-          <div>
+
+          <div className='flex flex-col'>
+            <label htmlFor="language">Language 1:</label>
+            <input type="text" id="language" {...register("language.language1")}
+              className='focus:outline-none pl-3 py-1 bg-gray-700 rounded-lg w-[300px] '
+            />
+          </div>
+
+          <div className='flex flex-col'>
+            <label htmlFor="language2">Language 2:</label>
+            <input type="text" id="language2" {...register("language.language2")}
+              className='focus:outline-none pl-3 py-1 bg-gray-700 rounded-lg w-[300px] '
+            />
+          </div>
+          <div className="flex space-x-5">
             <button className='px-10 py-2 transition transform duration-300 ease-in-out rounded-r-full text-white font-semibold  rounded-bl-full bg-green-600 hover:rounded-full'>Submit</button>
+            <h1 className="text-xl">{submitCount}</h1>
           </div>
         </form>
         <DevTool control={control} />

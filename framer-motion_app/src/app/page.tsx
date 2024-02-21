@@ -10,6 +10,18 @@ import { MdOutlineMessage } from "react-icons/md";
 import { FaLocationDot } from "react-icons/fa6";
 import Image from "next/image";
 import doctors from '../../public/doctors.webp'
+import TopSection from './components/TopSection'
+import { FaUserDoctor } from "react-icons/fa6";
+import { FaBriefcaseMedical } from "react-icons/fa";
+import { FaClinicMedical } from "react-icons/fa";
+import { FaTree } from "react-icons/fa6";
+import { FaAmbulance } from "react-icons/fa";
+import { FaFileMedical } from "react-icons/fa";
+import doctor from '../../public/doctor.jpg'
+import { BsEmojiSmileFill } from "react-icons/bs";
+import { FaUsersCog } from "react-icons/fa";
+import { GiPlagueDoctorProfile } from "react-icons/gi";
+import AnimatedNumber from './components/AnimatedNumber'
 
 // interface iappProps {
 //   doctors: string
@@ -179,22 +191,10 @@ export default function Home() {
       </div>
     </section>
 
-    <section className="lg:h-screen w-full py-14 lg:py-4">
-      <motion.div className="flex flex-col items-center space-y-3 justify-center"
-        initial={{ opacity: 0, y: -20 }}
-        animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: -20 }}
-        transition={{ duration: 1 }}
-      >
-        <h1 className="text-green-500 leading-5 font-semibold font-monts uppercase">About US</h1>
-        <h1 className="text-gray-500 font-extrabold font-play text-2xl md:text-3xl lg:text-5xl">The World's Best Treatment In Our Hospital</h1>
-        <div className="flex justify-center items-center space-x-6">
-          <div className="h-[1px] w-10 bg-black"></div>
-          <div className="text-green-500">
-            <FaHeartbeat size={25} />
-          </div>
-          <div className="h-[1px] w-10 bg-black"></div>
-        </div>
-      </motion.div>
+    <section className="w-full lg:py-4">
+      <TopSection head="About US"
+        heading="The World’s Best Treatment In Our Hospital"
+      />
       <div className='flex flex-col md:flex-row lg:px-28 md:px-16 space-x-4 py-14'>
         <motion.div className="md:w-1/2 w-full px-8 lg:px-0"
           initial={{ opacity: 0, x: -200 }}
@@ -233,7 +233,7 @@ export default function Home() {
             </div>
           </div>
           <div className="flex justify-center items-center py-8 lg:block">
-            <button className="py-2 px-4 bg-green-500 text-white rounded-full">Contact US</button>
+            <button className="py-3 px-6 text-[1rem] bg-green-500 text-white rounded-bl-full rounded-r-full">Contact US</button>
           </div>
         </motion.div>
         <motion.div className="md:w-1/2 w-full"
@@ -243,6 +243,137 @@ export default function Home() {
         >
           <Image src={doctors} alt="image" height={900} width={800} className="h-full w-full" />
         </motion.div>
+      </div>
+    </section>
+
+    <section className=" w-full lg:pt-14">
+      <TopSection
+        head="SERVICES"
+        heading="Greater access to surgical specialists"
+      />
+      <div className='flex pt-28 flex-col lg:flex-row lg:px-28 space-x-4 lg:pt-16'>
+        <motion.div className="flex flex-col space-y-7 justify-center items-center"
+          ref={ref}
+          initial={{ opacity: 0, x: -100 }}
+          animate={isInView ? { opacity: 1, x: 0 } : { opacity: 0, x: -100 }}
+          transition={{ duration: 1 }}
+        >
+          <div className="flex lg:space-x-4 lg:flex-row flex-col-reverse justify-center items-center">
+            <div className=" lg:items-end py-7 lg:py-0 items-center flex flex-col justify-center lg:justify-end">
+              <h1 className="text-gray-500 font-extrabold font-play text-xl md:text-2xl lg:text-3xl py-2">Qualified Doctors</h1>
+              <h2 className="font-mont text-[.9rem] text-black/60">Lorem ipsum dolor sit amet, consecte mattis, pulvinar dapibus </h2>
+            </div>
+            <div className="bg-green-500 mx-2 flex justify-center hover:text-gray-600 items-center text-white p-4 rounded-full">
+              <FaUserDoctor size={30} />
+            </div>
+          </div>
+          <div className="flex space-x-4 flex-col-reverse lg:flex-row justify-center items-center">
+            <div className=" lg:items-end py-5 items-center justify-center lg:py-0 flex flex-col lg:justify-end">
+              <h1 className="text-gray-500 font-extrabold font-play text-xl md:text-2xl lg:text-3xl py-2">Cancer Service</h1>
+              <h2 className="font-mont text-[.9rem] text-black/60">Lorem ipsum dolor sit amet, consecte mattis, pulvinar dapibus </h2>
+            </div>
+            <div className="bg-green-500 mx-2 flex justify-center hover:text-gray-600 items-center text-white p-4 rounded-full">
+              <FaBriefcaseMedical size={30} />
+            </div>
+          </div>
+          <div className="flex flex-col-reverse lg:flex-row space-x-4 justify-center items-center">
+            <div className=" lg:items-end py-5 lg:py-0 items-center justify-center flex flex-col lg:justify-end">
+              <h1 className="text-gray-500 font-extrabold font-play text-xl md:text-2xl lg:text-3xl py-2">Operation Theatre</h1>
+              <h2 className="font-mont text-[.9rem] items-end text-black/60">Lorem ipsum dolor sit amet, consecte mattis, pulvinar dapibus </h2>
+            </div>
+            <div className="bg-green-500 mx-2 flex justify-center hover:text-gray-600 items-center text-white p-4 rounded-full">
+              <FaClinicMedical size={30} />
+            </div>
+          </div>
+        </motion.div>
+
+        <motion.div className=""
+          ref={ref}
+          initial={{ opacity: 0, y: 100 }}
+          animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 100 }}
+          transition={{ duration: 1 }}
+        >
+          <Image src={doctor} alt="image" className=" object-cover" height={800} width={500} />
+        </motion.div>
+
+        <motion.div className="flex flex-col pt-16 lg:pt-0 space-y-7 justify-center items-center"
+          ref={ref}
+          initial={{ opacity: 0, x: 100 }}
+          animate={isInView ? { opacity: 1, x: 0 } : { opacity: 0, x: 100 }}
+          transition={{ duration: 1 }}
+        >
+          <div className="flex lg:space-x-4 lg:flex-row flex-col justify-center items-center">
+            <div className="bg-green-500 mx-2 flex justify-center hover:text-gray-600 items-center text-white p-4 rounded-full">
+              <FaTree size={30} />
+            </div>
+            <div className=" lg:items-end py-7 lg:py-0 items-center flex flex-col justify-center lg:justify-end">
+              <h1 className="text-gray-500 font-extrabold font-play text-xl md:text-2xl lg:text-3xl py-2">Qualified Doctors</h1>
+              <h2 className="font-mont text-[.9rem] text-black/60">Lorem ipsum dolor sit amet, consecte mattis, pulvinar dapibus </h2>
+            </div>
+          </div>
+          <div className="flex space-x-4 flex-col lg:flex-row justify-center items-center">
+            <div className="bg-green-500 mx-2 flex justify-center hover:text-gray-600 items-center text-white p-4 rounded-full">
+              <FaAmbulance size={30} />
+            </div>
+            <div className=" lg:items-end py-5 items-center justify-center lg:py-0 flex flex-col lg:justify-end">
+              <h1 className="text-gray-500 font-extrabold font-play text-xl md:text-2xl lg:text-3xl py-2">Cancer Service</h1>
+              <h2 className="font-mont text-[.9rem] text-black/60">Lorem ipsum dolor sit amet, consecte mattis, pulvinar dapibus </h2>
+            </div>
+          </div>
+          <div className="flex flex-col lg:flex-row space-x-4 justify-center items-center">
+            <div className="bg-green-500 mx-2 flex justify-center hover:text-gray-600 items-center text-white p-4 rounded-full">
+              <FaFileMedical size={30} />
+            </div>
+            <div className=" lg:items-end py-5 lg:py-0 items-center justify-center flex flex-col lg:justify-end">
+              <h1 className="text-gray-500 font-extrabold font-play text-xl md:text-2xl lg:text-3xl py-2">Operation Theatre</h1>
+              <h2 className="font-mont text-[.9rem] items-end text-black/60">Lorem ipsum dolor sit amet, consecte mattis, pulvinar dapibus </h2>
+            </div>
+          </div>
+        </motion.div>
+      </div>
+    </section>
+
+    <section className="h-screen w-full">
+      <div style={{ backgroundImage: `url(/home.webp)`, height: "100%", width: "100%", backgroundSize: "cover" }} className=" bg-fixed -z-10">
+        <div className='bg-green-900/95 text-white lg:h-[350px] sm:justify-center flex flex-col lg:flex-row lg:flex lg:space-x-20 space-y-14 py-9 lg:py-0 lg:space-y-0'>
+          <div className='flex flex-col items-center justify-center space-y-3 md:space-y-1'>
+            <div className='text-white pb-8'>
+              <BsEmojiSmileFill size={60} />
+            </div>
+            <span className='text-7xl font-bold md:text-4xl'>
+              <AnimatedNumber value={'1500'} />+
+            </span>
+            <h1 className='text-[1.1rem] uppercase font-ptSans leading-relaxed'>Happy Patient</h1>
+          </div>
+
+          <div className='flex flex-col space-y-3 items-center justify-center md:space-y-1'>
+            <div className='text-white pb-7'>
+              <FaUsersCog size={80} />
+            </div>
+            <span className='text-7xl font-bold md:text-4xl'>
+              <AnimatedNumber value={'689'} />+
+            </span>
+            <h1 className='text-[1.2rem] font-ptSans leading-relaxed'>OUR SERVICES</h1>
+          </div>
+
+          <div className='flex flex-col space-y-3 items-center justify-center md:space-y-1'>
+            <span className='text-7xl font-bold md:text-4xl'>
+              <AnimatedNumber value={'100'} />+
+            </span>
+            <h1 className='text-[1.2rem]  text-dark/75 dark:text-light/75 md:text-center'>OUR DOCTOR</h1>
+          </div>
+
+          <div className='flex flex-col items-center justify-center space-y-3 md:space-y-1'>
+            <div>
+              <GiPlagueDoctorProfile size={80}/>
+            </div>
+            <span className='text-7xl font-bold md:text-4xl'>
+              <AnimatedNumber value={'20'} />+
+            </span>
+            <h1 className='text-[1.2rem]  text-dark/75 dark:text-light/75 md:text-center'>SERVICE POINT</h1>
+          </div>
+
+        </div>
       </div>
     </section>
   </>
