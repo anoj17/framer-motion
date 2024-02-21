@@ -8,7 +8,8 @@ interface iappData {
   language: {
     language1: string,
     language2: string
-  }
+  },
+  phoneNumbers: []
 }
 
 let renderCount = 0;
@@ -22,7 +23,8 @@ function App() {
       language: {
         language1: '',
         language2: "react"
-      }
+      },
+      phoneNumbers: ["", ""]
     }
   })
 
@@ -39,7 +41,7 @@ function App() {
   return (
     <>
       <div className='flex flex-col justify-center items-center w-full h-[100vh] bg-black'>
-        <form className='flex flex-col text-white py-20 space-y-7 justify-center items-center'
+        <form className='flex flex-col text-white py-20 space-y-3 justify-center items-center'
           onSubmit={handleSubmit(submitData)}
           noValidate
         >
@@ -97,7 +99,7 @@ function App() {
             <p className="text-red-600 text-[.8rem] font-semibold">{errors.password?.message}</p>
           </div>
 
-          <div className='flex flex-col'>
+          {/* <div className='flex flex-col'>
             <label htmlFor="language">Language 1:</label>
             <input type="text" id="language" {...register("language.language1")}
               className='focus:outline-none pl-3 py-1 bg-gray-700 rounded-lg w-[300px] '
@@ -107,6 +109,20 @@ function App() {
           <div className='flex flex-col'>
             <label htmlFor="language2">Language 2:</label>
             <input type="text" id="language2" {...register("language.language2")}
+              className='focus:outline-none pl-3 py-1 bg-gray-700 rounded-lg w-[300px] '
+            />
+          </div> */}
+
+          <div className='flex flex-col'>
+            <label htmlFor="primary-number">first phone number:</label>
+            <input type="text" id="primary-number" {...register("phoneNumber.0")}
+              className='focus:outline-none pl-3 py-1 bg-gray-700 rounded-lg w-[300px] '
+            />
+          </div>
+
+          <div className='flex flex-col'>
+            <label htmlFor="secondary-number">second phone number:</label>
+            <input type="text" id="secondary-number" {...register("phoneNumber.1")}
               className='focus:outline-none pl-3 py-1 bg-gray-700 rounded-lg w-[300px] '
             />
           </div>
