@@ -1,4 +1,4 @@
-import { useForm } from "react-hook-form"
+import { useFieldArray, useForm } from "react-hook-form"
 import { DevTool } from "@hookform/devtools"
 
 interface iappData {
@@ -9,7 +9,10 @@ interface iappData {
     language1: string,
     language2: string
   },
-  phoneNumbers: []
+  phoneNumbers: string[],
+  phNumbers: {
+    number: string;
+  }[]
 }
 
 let renderCount = 0;
@@ -24,11 +27,17 @@ function App() {
         language1: '',
         language2: "react"
       },
-      phoneNumbers: ["", ""]
+      phoneNumbers: ["", ""],
+      phNumber: [{ number: '' }]
     }
   })
 
   const { register, control, handleSubmit, formState } = form
+
+  const { fields, append, remove } = useFieldArray({
+    name: 'phNumbers',
+    control
+  })
 
   const { errors, submitCount } = formState
 
@@ -126,13 +135,43 @@ function App() {
               className='focus:outline-none pl-3 py-1 bg-gray-700 rounded-lg w-[300px] '
             />
           </div>
+
+          <div className="flex-col">
+            <label htmlFor="secondary-number" className="flex items-start"
+            >List of phone number:</label>
+            <div>
+              {
+                fields.map((field, index) => {
+                  return (
+                    <div className="flex my-2 focus:outline-none pl-3 bg-gray-700 rounded-lg" key={field.id}>
+                      <input type="text" id="numbers" {...register(`phNumbers.${index}.number` as const)}
+                        className={`${index > 0 ? 'w-[220px]' : 'w-[300px]'} focus:outline-none pl-3 py-1 bg-gray-700 rounded-lg`}
+                      />
+                      {
+                        index > 0 &&
+                        <button className='px-4 py-[5px] bg-green-600'
+                          onClick={() => remove(index)}
+                        >Remove</button>
+                      }
+
+
+                    </div>
+                  )
+                })
+              }
+              < button className='px-10 py-2 bg-green-600 rounded-lg'
+                onClick={() => append({ number: "" })}
+              >Add Number</button>
+            </div>
+          </div>
+
           <div className="flex space-x-5">
             <button className='px-10 py-2 transition transform duration-300 ease-in-out rounded-r-full text-white font-semibold  rounded-bl-full bg-green-600 hover:rounded-full'>Submit</button>
             <h1 className="text-xl">{submitCount}</h1>
           </div>
         </form>
         <DevTool control={control} />
-      </div>
+      </div >
     </>
   )
 }
