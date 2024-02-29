@@ -12,7 +12,9 @@ interface iappData {
   phoneNumbers: string[],
   phNumbers: {
     number: string;
-  }[]
+  }[],
+  age: number,
+  dob: Date
 }
 
 let renderCount = 0;
@@ -28,7 +30,9 @@ function App() {
         language2: "react"
       },
       phoneNumbers: ["", ""],
-      phNumber: [{ number: '' }]
+      phNumber: [{ number: '' }],
+      age: 0,
+      dob: new Date()
     }
   })
 
@@ -163,6 +167,40 @@ function App() {
                 onClick={() => append({ number: "" })}
               >Add Number</button>
             </div>
+          </div>
+
+          <div className='flex flex-col'>
+            <label htmlFor="age">Age:</label>
+            {/* valueAsNumber le double court ma value dinna as number nai provide garxa */}
+            <input type="number" id="age" {...register("age",
+              {
+                valueAsNumber: true,
+                required: {
+                  value: true,
+                  message: "fill the age"
+                }
+              }
+            )}
+              className='focus:outline-none pl-3 py-1 bg-gray-700 rounded-lg w-[300px] '
+            />
+            <p className="text-red-600 text-[.8rem] font-semibold">{errors.age?.message}</p>
+          </div>
+
+          <div className='flex flex-col'>
+            <label htmlFor="dob">Date of Birth:</label>
+            {/* valueAsDate le double court ma value dinna as date nai provide garxa */}
+            <input type="date" id="dob" {...register("dob",
+              {
+                valueAsDate: true,
+                required: {
+                  value: true,
+                  message: "fill the Date of birth"
+                }
+              }
+            )}
+              className='focus:outline-none pl-3 py-1 bg-gray-700 rounded-lg w-[300px] '
+            />
+            <p className="text-red-600 text-[.8rem] font-semibold">{errors.username?.message}</p>
           </div>
 
           <div className="flex space-x-5">
